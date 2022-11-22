@@ -13,7 +13,7 @@
     <string name="bt_cadastrar">Cadastrar</string>
     <string name="bt_salvar">Salvar</string>
     <!--    APPBAR-->
-    <string name="tarefas_appbar">Tarefas App</string>
+    <string name="tarefas_appbar">Compromissos App</string>
     <string name="recuperar_conta_appbar">Recuperar Conta</string>
     <string name="bt_appbar_sair">Sair</string>
     <string name="criar_conta_appbar">Criar Conta</string>
@@ -45,6 +45,6 @@
     <string name="bt_voltar">Voltar</string>
     <string name="bt_deletar">Deletar</string>
     <string name="cd_novo">Novo</string>
-    <string name="TV_LISTA_VAZIA">Nenhum Compromisso em Sua Lista!</string>
+    <string name="TV_LISTA_VAZIA">Nenhum Compromisso em sua Lista!</string>
     <string name="APPBAR_EDITAR">Editar Compromisso</string>
 </resources>

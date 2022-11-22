@@ -17,9 +17,11 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_voltar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue_grey">
+                android:background="@color/blue_grey"
+                app:navigationIcon="@drawable/ic_back">
 
                 <TextView
                     android:layout_width="match_parent"

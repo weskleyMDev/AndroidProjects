@@ -8,17 +8,17 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mbweskley.mobileproject.R
 import com.mbweskley.mobileproject.databinding.FragmentFormBinding
+import com.mbweskley.mobileproject.helper.BaseFragment
 import com.mbweskley.mobileproject.helper.FirebaseHelper
 import com.mbweskley.mobileproject.model.Task
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FormFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
 
     private val args: FormFragmentArgs by navArgs()
 
@@ -65,6 +65,7 @@ class FormFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         val andress = binding.etEndereco.text.toString().trim()
         val date = binding.tvData.text.toString()
         if (title.isNotEmpty() && desc.isNotEmpty() && andress.isNotEmpty() && date.isNotEmpty()) {
+            hideKeyboard()
             binding.progressBar.isVisible = true
             if (newTask) task = Task()
             task.titulo = title

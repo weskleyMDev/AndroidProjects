@@ -50,12 +50,10 @@ class DoingFragment : Fragment() {
                             val task = snap.getValue(Task::class.java) as Task
                             if (task.status == 1) tasksList.add(task)
                         }
-                        binding.tvLoading.text = ""
                         tasksList.reverse()
                         initAdapter()
-                    } else {
-                        binding.tvLoading.text = getString(R.string.TV_LISTA_VAZIA)
                     }
+                    taskIsEmpty()
                     binding.progressBar.isVisible = false
                 }
 
@@ -119,6 +117,14 @@ class DoingFragment : Fragment() {
                 binding.progressBar.isVisible = false
 
             }
+    }
+
+    private fun taskIsEmpty() {
+        binding.tvLoading.text = if (tasksList.isEmpty()) {
+            getString(R.string.TV_LISTA_VAZIA)
+        } else {
+            ""
+        }
     }
 
     private fun deleteTask(task: Task) {
