@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">MobileProject</string>
+    <!--    TEXT VIEWS-->
+    <string name="tv_email">E-mail</string>
+    <string name="tv_compromisso">Compromisso</string>
+    <string name="tv_status">Status</string>
+    <string name="tv_senha">Senha</string>
+    <string name="tv_esqueceu_sua_senha">Esqueceu sua senha?</string>
+    <string name="tv_criar_conta">Criar Conta</string>
+    <!--    BUTTONS-->
+    <string name="bt_enviar">Enviar</string>
+    <string name="bt_login">login</string>
+    <string name="bt_cadastrar">Cadastrar</string>
+    <string name="bt_salvar">Salvar</string>
+    <!--    APPBAR-->
+    <string name="tarefas_appbar">Tarefas App</string>
+    <string name="recuperar_conta_appbar">Recuperar Conta</string>
+    <string name="bt_appbar_sair">Sair</string>
+    <string name="criar_conta_appbar">Criar Conta</string>
+    <string name="FORM_APPBAR_TITLE">Novo Compromisso</string>
+    <!--    HINTS-->
+    <string name="hint_digite_seu_e_mail">Digite seu e-mail</string>
+    <string name="hint_digite_sua_senha">Digite sua senha</string>
+    <!--    IMAGES-->
+    <string name="iv_logo">Logo</string>
+    <string name="tv_carregando">Carregando…</string>
+    <string name="fbt_adicionar">Adicionar</string>
+    <!--    ERROR-->
+    <string name="ACC_NOT_REG">Este e-mail não possui cadastro.</string>
+    <string name="INV_EMAIL_REG">E-mail inválido.</string>
+    <string name="INV_PASS_REG">Senha inválida.</string>
+    <string name="SHORT_PASS_REG">Senha precisa ter 6 caracteres.</string>
+    <string name="EMAIL_ALREADY_REG">Este e-mail já possui cadastro.</string>
+    <string name="ERROR">Ocorreu algum erro. tente mais tarde.</string>
+    <string name="tv_em_andamento">Em Andamento</string>
+    <string name="tv_concluido">Concluído</string>
+    <string name="tv_a_fazer">A Fazer</string>
+    <string name="bt_editar">Editar</string>
+    <string name="tv_titulo">Título</string>
+    <string name="tv_descricao">Descrição</string>
+    <string name="tv_endereco">Endereço</string>
+    <string name="tv_data">Data</string>
+    <string name="tv_selecione_uma_data">Selecione uma Data</string>
+    <string name="bt_avancar">Avancar</string>
+    <string name="bt_voltar">Voltar</string>
+    <string name="bt_deletar">Deletar</string>
+    <string name="cd_novo">Novo</string>
+    <string name="TV_LISTA_VAZIA">Nenhum Compromisso em Sua Lista!</string>
+    <string name="APPBAR_EDITAR">Editar Compromisso</string>
+</resources>
