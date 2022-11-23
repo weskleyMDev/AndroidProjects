@@ -15,6 +15,7 @@ import com.mbweskley.mobileproject.databinding.FragmentRegisterBinding
 import com.mbweskley.mobileproject.helper.BaseFragment
 import com.mbweskley.mobileproject.helper.FirebaseHelper
 import com.mbweskley.mobileproject.helper.backToolbar
+import com.mbweskley.mobileproject.helper.showBottomSheet
 
 class RegisterFragment : BaseFragment() {
 
@@ -54,12 +55,10 @@ class RegisterFragment : BaseFragment() {
                 binding.progressBar.isVisible = true
                 registerUser(email, senha)
             } else {
-                Toast.makeText(requireContext(), "Campo Senha está em branco", Toast.LENGTH_SHORT)
-                    .show()
+                showBottomSheet(message = R.string.SENHA_VAZIO)
             }
         } else {
-            Toast.makeText(requireContext(), "Campo E-mail está em branco", Toast.LENGTH_SHORT)
-                .show()
+            showBottomSheet(message = R.string.EMAIL_VAZIO)
         }
     }
 

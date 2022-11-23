@@ -14,6 +14,7 @@ import com.mbweskley.mobileproject.R
 import com.mbweskley.mobileproject.databinding.FragmentLoginBinding
 import com.mbweskley.mobileproject.helper.BaseFragment
 import com.mbweskley.mobileproject.helper.FirebaseHelper
+import com.mbweskley.mobileproject.helper.showBottomSheet
 
 class LoginFragment : BaseFragment() {
 
@@ -60,12 +61,10 @@ class LoginFragment : BaseFragment() {
                 binding.progressBar.isVisible = true
                 loginUser(email, senha)
             } else {
-                Toast.makeText(requireContext(), "Campo Senha está em branco", Toast.LENGTH_SHORT)
-                    .show()
+                showBottomSheet(message = R.string.SENHA_VAZIO)
             }
         } else {
-            Toast.makeText(requireContext(), "Campo E-mail está em branco", Toast.LENGTH_SHORT)
-                .show()
+            showBottomSheet(message = R.string.EMAIL_VAZIO)
         }
     }
 

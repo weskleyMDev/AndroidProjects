@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -15,6 +13,7 @@ import com.mbweskley.mobileproject.databinding.FragmentRecoverBinding
 import com.mbweskley.mobileproject.helper.BaseFragment
 import com.mbweskley.mobileproject.helper.FirebaseHelper
 import com.mbweskley.mobileproject.helper.backToolbar
+import com.mbweskley.mobileproject.helper.showBottomSheet
 
 class RecoverFragment : BaseFragment() {
 
@@ -52,8 +51,7 @@ class RecoverFragment : BaseFragment() {
             binding.progressBar.isVisible = true
             recoverUserAccount(email)
         } else {
-            Toast.makeText(requireContext(), "Campo E-mail está em branco", Toast.LENGTH_SHORT)
-                .show()
+            showBottomSheet(message = R.string.EMAIL_VAZIO)
         }
     }
 
@@ -61,20 +59,13 @@ class RecoverFragment : BaseFragment() {
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    findNavController().navigate(
-                        R.id.action_recoverFragment_to_loginFragment
-                    )
-                    Toast.makeText(
-                        requireContext(),
-                        "Verifique seu e-mail para recuperar sua conta!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showBottomSheet(message = R.string.VERIFICAR_EMAIL)
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        FirebaseHelper.validError(task.exception?.message ?: ""),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showBottomSheet(
+                        message = FirebaseHelper.validError(
+                            task.exception?.message ?: ""
+                        )
+                    )
                     binding.progressBar.isVisible = false
                 }
             }

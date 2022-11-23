@@ -32,6 +32,10 @@
     <string name="SHORT_PASS_REG">Senha precisa ter 6 caracteres.</string>
     <string name="EMAIL_ALREADY_REG">Este e-mail já possui cadastro.</string>
     <string name="ERROR">Ocorreu algum erro. tente mais tarde.</string>
+    <string name="EMAIL_VAZIO">Campo e-mail está vazio!</string>
+    <string name="SENHA_VAZIO">Campo senha está vazio!</string>
+    <string name="VERIFICAR_EMAIL">Verifique seu e-mail para recuperar sua conta!</string>
+
     <string name="tv_em_andamento">Em Andamento</string>
     <string name="tv_concluido">Concluído</string>
     <string name="tv_a_fazer">A Fazer</string>
@@ -47,4 +51,6 @@
     <string name="cd_novo">Novo</string>
     <string name="TV_LISTA_VAZIA">Nenhum Compromisso em sua Lista!</string>
     <string name="APPBAR_EDITAR">Editar Compromisso</string>
+    <string name="TV_WARNING">Atenção!</string>
+    <string name="BT_ENTENDI">Entendi</string>
 </resources>
