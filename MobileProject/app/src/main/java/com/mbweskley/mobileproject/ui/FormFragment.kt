@@ -14,6 +14,7 @@ import com.mbweskley.mobileproject.R
 import com.mbweskley.mobileproject.databinding.FragmentFormBinding
 import com.mbweskley.mobileproject.helper.BaseFragment
 import com.mbweskley.mobileproject.helper.FirebaseHelper
+import com.mbweskley.mobileproject.helper.backToolbar
 import com.mbweskley.mobileproject.model.Task
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,6 +40,7 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        backToolbar(binding.tbVoltar)
         initClicks()
         getArgs()
     }
