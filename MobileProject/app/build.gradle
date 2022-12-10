@@ -4,16 +4,17 @@ plugins {
     id 'com.google.gms.google-services'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
     namespace 'com.mbweskley.mobileproject'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.mbweskley.mobileproject"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -41,7 +42,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -58,4 +59,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-database-ktx'
+
+    //GOOGLE_MAPS
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.maps.android:maps-ktx:3.2.1'
+    implementation 'com.google.maps.android:maps-utils-ktx:3.2.1'
 }

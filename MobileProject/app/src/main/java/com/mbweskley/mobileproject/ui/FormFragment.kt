@@ -77,7 +77,7 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
             task.status = setStatus
             saveTasks()
         } else {
-            Toast.makeText(requireContext(), "Campo Título Está Vazio!", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT)
                 .show()
         }
     }

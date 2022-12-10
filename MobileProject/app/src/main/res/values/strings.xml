@@ -36,7 +36,7 @@
     <string name="SENHA_VAZIO">Campo senha está vazio!</string>
     <string name="VERIFICAR_EMAIL">Verifique seu e-mail para recuperar sua conta!</string>
 
-    <string name="tv_em_andamento">Em Andamento</string>
+    <string name="tv_pendente">Pendente</string>
     <string name="tv_concluido">Concluído</string>
     <string name="tv_a_fazer">A Fazer</string>
     <string name="bt_editar">Editar</string>

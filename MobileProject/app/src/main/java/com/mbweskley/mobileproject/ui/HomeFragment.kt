@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         binding.vpViewPage.adapter = adapter
 
         adapter.addFragment(TodoFragment(), "A Fazer")
-        adapter.addFragment(DoingFragment(), "Em Andamento")
+        adapter.addFragment(DoingFragment(), "Pendente")
         adapter.addFragment(DoneFragment(), "Concluído")
 
         binding.vpViewPage.offscreenPageLimit = adapter.itemCount

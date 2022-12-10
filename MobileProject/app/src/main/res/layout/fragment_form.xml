@@ -160,7 +160,7 @@
                     android:id="@+id/rb_fazer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.1"
+                    android:layout_weight="1"
                     android:buttonTint="@color/white"
                     android:checked="true"
                     android:text="@string/tv_a_fazer"
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.9"
                     android:buttonTint="@color/white"
-                    android:text="@string/tv_em_andamento"
+                    android:text="@string/tv_pendente"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
