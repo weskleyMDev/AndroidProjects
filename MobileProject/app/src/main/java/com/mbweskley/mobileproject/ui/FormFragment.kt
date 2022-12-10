@@ -1,6 +1,7 @@
 package com.mbweskley.mobileproject.ui
 
 import android.app.DatePickerDialog
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,14 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.mbweskley.mobileproject.R
 import com.mbweskley.mobileproject.databinding.FragmentFormBinding
 import com.mbweskley.mobileproject.helper.BaseFragment
@@ -19,7 +28,7 @@ import com.mbweskley.mobileproject.model.Task
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
+class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, OnMapReadyCallback {
 
     private val args: FormFragmentArgs by navArgs()
 
@@ -29,6 +38,11 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var task: Task
     private var newTask: Boolean = true
     private var setStatus = 0
+
+    private lateinit var mMap: GoogleMap
+    private lateinit var currentLocation: Location
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private val permissionCode = 101
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +54,11 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireContext())
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.google_map) as? SupportMapFragment
+        mapFragment?.getMapAsync(this)
         backToolbar(binding.tbVoltar)
         initClicks()
         getArgs()
@@ -168,6 +187,16 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener {
                     R.id.rb_concluido
                 }
             }
+        )
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+        val quixada = LatLng(-4.96851, -39.01632)
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(quixada))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(quixada, 15.0f))
+        mMap.addMarker(
+            MarkerOptions().position(quixada).title("Quixadá")
         )
     }
 
