@@ -33,6 +33,17 @@
                 android:paddingHorizontal="8dp"
                 android:src="@drawable/ic_logout" />
 
+            <ImageButton
+                android:id="@+id/ib_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/tirar_foto"
+                android:paddingHorizontal="8dp"
+                android:src="@drawable/ic_camera" />
+
+
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -1,6 +1,8 @@
 package com.mbweskley.mobileproject.ui
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -24,25 +27,29 @@ import com.mbweskley.mobileproject.databinding.FragmentFormBinding
 import com.mbweskley.mobileproject.helper.BaseFragment
 import com.mbweskley.mobileproject.helper.FirebaseHelper
 import com.mbweskley.mobileproject.helper.backToolbar
-import com.mbweskley.mobileproject.model.Task
 import java.text.SimpleDateFormat
 import java.util.*
+import com.mbweskley.mobileproject.model.Task as Task1
 
-class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, OnMapReadyCallback {
+class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener,
+    OnMapReadyCallback {
 
     private val args: FormFragmentArgs by navArgs()
 
     private var _binding: FragmentFormBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var task: Task
+    private lateinit var task: Task1
     private var newTask: Boolean = true
     private var setStatus = 0
 
     private lateinit var mMap: GoogleMap
-    private lateinit var currentLocation: Location
+    private lateinit var lastLocation: Location
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private val permissionCode = 101
+
+    companion object {
+        private const val LOCATION_REQUEST_CODE = 1
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +62,7 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, OnMapRe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireContext())
+            LocationServices.getFusedLocationProviderClient(requireActivity())
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.google_map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
@@ -88,7 +95,7 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, OnMapRe
         if (title.isNotEmpty() && desc.isNotEmpty() && andress.isNotEmpty() && date.isNotEmpty()) {
             hideKeyboard()
             binding.progressBar.isVisible = true
-            if (newTask) task = Task()
+            if (newTask) task = Task1()
             task.titulo = title
             task.descricao = desc
             task.endereco = andress
@@ -96,13 +103,18 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, OnMapRe
             task.status = setStatus
             saveTasks()
         } else {
-            Toast.makeText(requireContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                requireContext(),
+                "Preencha todos os campos!",
+                Toast.LENGTH_SHORT
+            )
                 .show()
         }
     }
 
     private fun saveTasks() {
-        FirebaseHelper.getDatabase().child("Compromissos").child(FirebaseHelper.getIdUser() ?: "")
+        FirebaseHelper.getDatabase().child("Compromissos")
+            .child(FirebaseHelper.getIdUser() ?: "")
             .child(task.id).setValue(task).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (newTask) {
@@ -192,12 +204,47 @@ class FormFragment : BaseFragment(), DatePickerDialog.OnDateSetListener, OnMapRe
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val quixada = LatLng(-4.96851, -39.01632)
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(quixada))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(quixada, 15.0f))
-        mMap.addMarker(
-            MarkerOptions().position(quixada).title("Quixadá")
-        )
+
+        mMap.uiSettings.isZoomControlsEnabled = true
+        fetchLocation()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun fetchLocation() {
+        val deviceLocation = fusedLocationProviderClient.lastLocation
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_REQUEST_CODE
+            )
+            return
+        }
+        mMap.isMyLocationEnabled = true
+        deviceLocation.addOnSuccessListener {
+            if (it != null) {
+                lastLocation = it
+                val currentLatLong = LatLng(it.latitude, it.longitude)
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLatLong))
+                mMap.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        currentLatLong,
+                        15.0f
+                    )
+                )
+                mMap.addMarker(
+                    MarkerOptions().position(currentLatLong)
+                        .title("$currentLatLong")
+                )
+            }
+        }
     }
 
     override fun onDestroyView() {

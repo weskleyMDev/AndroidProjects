@@ -55,4 +55,7 @@
     <string name="BT_ENTENDI">Entendi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tirar_foto">Tirar foto</string>
+    <string name="TIRAR_FOTO">Tirar Foto</string>
+    <string name="SALVAR">Salvar</string>
 </resources>

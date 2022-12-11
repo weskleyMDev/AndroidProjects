@@ -55,6 +55,13 @@ class HomeFragment : Fragment() {
         binding.ibLogout.setOnClickListener {
             logoutUser()
         }
+        binding.ibCamera.setOnClickListener {
+            takePhotos()
+        }
+    }
+
+    private fun takePhotos() {
+        findNavController().navigate(R.id.action_homeFragment_to_photoFragment)
     }
 
     private fun logoutUser() {
