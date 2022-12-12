@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_photoFragment"
             app:destination="@id/photoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_convertFragment"
+            app:destination="@id/convertFragment" />
     </fragment>
     <navigation
         android:id="@+id/authentication"
@@ -102,4 +105,9 @@
             app:popUpTo="@id/photoFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/convertFragment"
+        android:name="com.mbweskley.mobileproject.ui.ConvertFragment"
+        android:label="fragment_convert"
+        tools:layout="@layout/fragment_convert" />
 </navigation>

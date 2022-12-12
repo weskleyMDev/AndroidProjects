@@ -55,6 +55,22 @@
         app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_convert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/CONVERTER_MOEDA"
+        android:src="@drawable/ic_money"
+        app:backgroundTint="@color/white"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fb_adicionar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.983"
+        app:tint="@color/blue_grey" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fb_adicionar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +84,7 @@
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961"
+        app:layout_constraintVertical_bias="0.979"
         app:tint="@color/blue_grey" />
 
 

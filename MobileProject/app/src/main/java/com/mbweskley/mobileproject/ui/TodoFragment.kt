@@ -43,14 +43,18 @@ class TodoFragment : Fragment() {
 
     private fun initClicks() {
         binding.fbAdicionar.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToFormFragment(null)
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToFormFragment(null)
             findNavController().navigate(action)
         }
-
+        binding.fbConvert.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_convertFragment)
+        }
     }
 
     private fun getTasks() {
-        FirebaseHelper.getDatabase().child("Compromissos").child(FirebaseHelper.getIdUser() ?: "")
+        FirebaseHelper.getDatabase().child("Compromissos")
+            .child(FirebaseHelper.getIdUser() ?: "")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -92,7 +96,8 @@ class TodoFragment : Fragment() {
                 deleteTask(task)
             }
             TaskAdapter.SELECT_EDIT -> {
-                val action = HomeFragmentDirections.actionHomeFragmentToFormFragment(task)
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToFormFragment(task)
                 findNavController().navigate(action)
             }
             TaskAdapter.SELECT_NEXT -> {
@@ -103,7 +108,8 @@ class TodoFragment : Fragment() {
     }
 
     private fun updateStatusTask(task: Task) {
-        FirebaseHelper.getDatabase().child("Compromissos").child(FirebaseHelper.getIdUser() ?: "")
+        FirebaseHelper.getDatabase().child("Compromissos")
+            .child(FirebaseHelper.getIdUser() ?: "")
             .child(task.id).setValue(task).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(
@@ -132,7 +138,8 @@ class TodoFragment : Fragment() {
     }
 
     private fun deleteTask(task: Task) {
-        FirebaseHelper.getDatabase().child("Compromissos").child(FirebaseHelper.getIdUser() ?: "")
+        FirebaseHelper.getDatabase().child("Compromissos")
+            .child(FirebaseHelper.getIdUser() ?: "")
             .child(task.id).removeValue()
 
         tasksList.remove(task)

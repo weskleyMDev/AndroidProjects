@@ -58,4 +58,8 @@
     <string name="tirar_foto">Tirar foto</string>
     <string name="TIRAR_FOTO">Tirar Foto</string>
     <string name="SALVAR">Salvar</string>
+    <string name="CONVERTER_MOEDA">Converter Moeda</string>
+    <string name="DIGITE_AQUI_UM_VALOR">Digite aqui um valor</string>
+    <string name="DOLAR">USD</string>
+    <string name="EURO">EUR</string>
 </resources>
